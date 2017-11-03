@@ -1,0 +1,107 @@
+﻿生成启动时间为 2016/4/5 14:42:56。
+     1>项目“C:\Users\pxf\Desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\OcrHelper\OcrHelper.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D NDEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\OcrHelper.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib OcrHelper.cpp
+         OcrHelper.cpp
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(184): warning C4101: “numg”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(184): warning C4101: “numr”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(184): warning C4101: “numb”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(525): warning C4101: “numg”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(525): warning C4101: “numr”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(525): warning C4101: “numb”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(614): warning C4101: “q”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(1596): warning C4101: “numg”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(1596): warning C4101: “numr”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(1596): warning C4101: “numb”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(1701): warning C4101: “s”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2148): warning C4101: “amountdifferone”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2148): warning C4101: “amountdiffertwo”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2438): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2493): warning C4101: “interval”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2243): warning C4101: “amountdiffer”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2843): warning C4101: “numg”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2843): warning C4101: “numr”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2843): warning C4101: “numb”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2925): warning C4101: “spotamount”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2926): warning C4101: “q”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(2968): warning C4101: “q”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3063): warning C4101: “n”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3314): warning C4101: “numg”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3314): warning C4101: “numr”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3314): warning C4101: “numb”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3364): warning C4101: “numg”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3364): warning C4101: “numr”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3364): warning C4101: “numb”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3529): warning C4101: “numg”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3529): warning C4101: “numr”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3529): warning C4101: “numb”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3834): warning C4101: “numg”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3834): warning C4101: “numr”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3834): warning C4101: “numb”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3857): warning C4101: “numg”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3857): warning C4101: “numr”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3857): warning C4101: “numb”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3924): warning C4101: “amountdiffer”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3953): warning C4101: “sumnum”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3956): warning C4101: “coloramount”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3955): warning C4101: “samecolor”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3952): warning C4101: “amountdifferone”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3952): warning C4101: “amountdiffertwo”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3958): warning C4101: “r”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(3955): warning C4101: “differcolor”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(4278): warning C4101: “j”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(4431): warning C4101: “j”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(4788): warning C4101: “amountdiffertwo”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(4816): warning C4101: “i”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(4901): warning C4101: “q”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(4992): warning C4101: “amountdiffer”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5149): warning C4101: “q”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5250): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5251): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5370): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5376): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5390): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5405): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5414): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5429): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5437): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5601): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5936): warning C4101: “differ”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5939): warning C4101: “r”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5937): warning C4101: “differcolor”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(5936): warning C4101: “same”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(6101): warning C4101: “spotwidth”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(6098): warning C4101: “end”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(6098): warning C4101: “start”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7445): warning C4101: “i”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7445): warning C4101: “j”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7541): warning C4101: “addval”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7539): warning C4101: “pointdownleft”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7554): warning C4101: “letterwidth”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7539): warning C4101: “pointdownright”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7542): warning C4101: “leftrightflg”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7539): warning C4101: “pointright”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7539): warning C4101: “pointleft”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7546): warning C4101: “downedgeheight”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7542): warning C4101: “inipointy”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7539): warning C4101: “pointdown”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7550): warning C4101: “samenum”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7542): warning C4101: “inipointx”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7551): warning C4101: “firstspot”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7545): warning C4101: “upedgeheight”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7714): warning C4101: “n”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7714): warning C4101: “num”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7716): warning C4101: “q”: 未引用的局部变量
+     1>c:\users\pxf\desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ocrhelper\OcrHelper.h(7714): warning C4101: “m”: 未引用的局部变量
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\pxf\Desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ConsoleApplication\Release\OcrHelper.dll" /INCREMENTAL:NO /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\pxf\Desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ConsoleApplication\Release\OcrHelper.pdb" /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /SAFESEH /DLL Release\app.res
+         Release\AssemblyInfo.obj
+         Release\OcrHelper.obj
+         Release\Stdafx.obj
+         "Release\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
+         OcrHelper.vcxproj -> C:\Users\pxf\Desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\ConsoleApplication\Release\OcrHelper.dll
+     1>已完成生成项目“C:\Users\pxf\Desktop\10.12验证码\验证码10.20---58，贵州稍作修改，加上58字母位置上下调整\OcrHelper\OcrHelper.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.57

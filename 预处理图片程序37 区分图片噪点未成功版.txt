@@ -1,0 +1,1194 @@
+// ConsoleApplication.cpp: 主项目文件。
+
+#include "stdafx.h"
+#include<stdio.h>
+#include<malloc.h>  
+#include<string.h> 
+#include<math.h>
+#include<stdlib.h>
+#include<iostream>  
+#include <windows.h> 
+
+using namespace std;
+using namespace System;
+using namespace System::Drawing;
+using namespace System::Net;
+using namespace System::IO;
+
+typedef struct RGB_QUAD
+{
+	int rgbBlue;         
+	int rgbGreen;        
+	int rgbRed;
+	int rgbReversed; 
+} RGBQUADS, *imagergb;
+typedef struct RGB_COLOR
+{
+	int numb;
+	int numg;
+	int numr;
+	int amount;
+	int location;
+}RGB_AMOUNT, *rgbcolor;
+
+imagergb rgb, rgbregister, backgroundrgb;
+rgbcolor rgbamount;
+int width, height, countcolorvarietyamount, rgbReversedture=0;
+
+int countstatisticscolor(rgbcolor p, rgbcolor q)
+{
+	int amountdiffer, rgbrgbBluespot, rgbrgbGreenspot, rgbrgbRedspot;
+	rgbrgbBluespot = p->numb - ((q)->numb);
+	rgbrgbGreenspot = p->numg - ((q)->numg);
+	rgbrgbRedspot = p->numr - ((q)->numr);
+	if (rgbrgbBluespot < 0)
+		rgbrgbBluespot = -rgbrgbBluespot;
+	if (rgbrgbGreenspot < 0)
+		rgbrgbGreenspot = -rgbrgbGreenspot;
+	if (rgbrgbRedspot < 0)
+		rgbrgbRedspot = -rgbrgbRedspot;
+	amountdiffer = rgbrgbBluespot + rgbrgbGreenspot + rgbrgbRedspot;
+	return amountdiffer;
+}
+int counttworgb(imagergb p, imagergb q)
+{
+
+	int rgbspot, rgbrgbBluespot, rgbrgbGreenspot, rgbrgbRedspot;
+	rgbrgbBluespot = p->rgbBlue - ((q)->rgbBlue);
+	rgbrgbGreenspot = p->rgbGreen - ((q)->rgbGreen);
+	rgbrgbRedspot = p->rgbRed - ((q)->rgbRed);
+	if (rgbrgbBluespot < 0)
+		rgbrgbBluespot = -rgbrgbBluespot;
+	if (rgbrgbGreenspot < 0)
+		rgbrgbGreenspot = -rgbrgbGreenspot;
+	if (rgbrgbRedspot < 0)
+		rgbrgbRedspot = -rgbrgbRedspot;
+	rgbspot = rgbrgbBluespot + rgbrgbGreenspot + rgbrgbRedspot;
+	return rgbspot;
+}
+void bubblesort(int countamount)
+{
+	int i, j, numb, numg, numr, amount;
+	rgbcolor q, s;
+	for (i = 0, q = rgbamount; i <countamount - 1; i++, q++)
+	{
+		for (j = i + 1, s = q + 1; j < countamount; j++, s++)
+		{
+			if (s->amount>q->amount)
+			{
+				numb = q->numb;
+				numg = q->numg;
+				numr = q->numr;
+				amount = q->amount;
+				q->numb = s->numb;
+				q->numg = s->numg;
+				q->numr = s->numr;
+				q->amount = s->amount;
+				s->numb = numb;
+				s->numg = numg;
+				s->numr = numr;
+				s->amount = amount;
+			}
+		}
+	}
+}
+void discardwidthnoise()
+{
+	int i, j, k, minwidthditance = 2,ditance;
+	imagergb p, q;
+	for (i = 1; i < height - 1; i++)
+	{
+		for (p = rgb + width*i, j = 0; j <width - 2; p++, j++)
+		{
+			ditance = 0;
+			if (p->rgbBlue == 0 && (p + 1)->rgbBlue == 255)
+			{
+				ditance = 1;
+				for (q = p + 1, k = 0;; k++, q++)
+				{
+					if (ditance>0 && q->rgbBlue == 255 && (q + 1)->rgbBlue == 0)
+						break;
+					if (q->rgbBlue == 255 && (q + 1)->rgbBlue == 255)
+						ditance++;
+				}
+			}
+			if (ditance <  minwidthditance && ditance != 0)
+			{
+				for (p = p + 1, j = j + 1, k = 0; k < ditance; k++, j++, p++)
+				{
+					p->rgbBlue = 0;
+					p->rgbGreen = 0;
+					p->rgbRed = 0;
+				}
+				j--;
+				p--;
+			}
+			else if (ditance >= minwidthditance && ditance != 0)
+			{
+				p = p + ditance;
+				j = j + ditance;
+			}
+		}
+	}
+
+}
+void discardheightnoise()
+{
+	int i, j, k, minheightditance = 2, ditance;
+	imagergb p, q;
+	for (i = 0; i < width - 2; i++)
+	{
+		for (j = 0, p = rgb + i; j<height - 1; p = p + width, j++)
+		{
+			ditance = 0;
+			if (p->rgbBlue == 0 && (p + width)->rgbBlue == 255)
+			{
+				ditance = 1;
+				for (q = p + width, k = 0;; k++, q = q + width)
+				{
+					if (ditance>0 && q->rgbBlue == 255 && (q + width)->rgbBlue == 0)
+						break;
+					if (q->rgbBlue == 255 && (q + width)->rgbBlue == 255)
+						ditance++;
+				}
+			}
+			if (ditance < minheightditance && ditance != 0)
+			{
+				for (p = p + width, j = j + 1, k = 0; k < ditance; k++, j++, p = p + width)
+				{
+					p->rgbBlue = 0;
+					p->rgbGreen = 0;
+					p->rgbRed = 0;
+				}
+				j--;
+				p = p - width;
+			}
+			else if (ditance >= minheightditance && ditance != 0)
+			{
+				p = p + width*ditance;
+				j = j + ditance;
+			}
+		}
+	}
+}
+void makeuprgbspot(int number)
+{
+	int i, j, k, s, countnum;
+	imagergb  p, q;
+	for (i = 1; i <height - 1; i++)
+	{
+		for (j = 1, p = rgb + i*width + 1; j < width - 1; j++, p++)
+		{
+			if (p->rgbBlue == 0)
+			{
+				countnum = 0;
+				for (k = 0; k < 3; k++)
+				{
+					for (s = 0, q = p + width*(k - 1) - 1; s < 3; s++, q++)
+					{
+						if (q->rgbBlue == 255)
+							countnum++;
+					}
+				}
+				if (countnum>number)
+				{
+					p->rgbBlue = 255;
+					p->rgbGreen = 255;
+					p->rgbRed = 255;
+				}
+			}
+		}
+	}
+}
+void discardrgbspot(int number)
+{
+	int i, j, k, s, countnum;
+	imagergb  p, q;
+	for (i = 1; i <height - 1; i++)
+	{
+		for (j = 1, p = rgb + i*width + 1; j < width - 1; j++, p++)
+		{
+			if (p->rgbBlue == 255)
+			{
+				countnum = 0;
+				for (k = 0; k < 3; k++)
+				{
+					for (s = 0, q = p + width*(k - 1) - 1; s < 3; s++, q++)
+					{
+						if (q->rgbBlue == 0)
+							countnum++;
+					}
+				}
+				if (countnum>number)
+				{
+					p->rgbBlue = 0;
+					p->rgbGreen = 0;
+					p->rgbRed = 0;
+				}
+			}
+		}
+	}
+
+}
+void discardmakeuprgbspot(int signalspot)
+{
+	//int i;	
+	//for (i = 7; i > 4; i--)
+	//{
+		discardrgbspot(5);
+		//makeuprgbspot(i);			
+	//}
+	if (signalspot == 1)
+	{
+		discardwidthnoise();
+		discardheightnoise();
+	}
+}
+void dividetreatrgbspot()
+{
+	int i, j, k, s, countnum,acountspotamount;
+	imagergb  p, q;
+	int rgbspot[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	for (i = 1; i <height - 1; i++)
+	{
+		for (j = 1, p = rgb + i*width + 1; j < width - 1; j++, p++)
+		{
+			if (p->rgbBlue == 255)
+			{
+				countnum = 0;
+				for (k = 0; k < 3; k++)
+				{
+					for (s = 0, q = p + width*(k - 1) - 1; s < 3; s++, q++)
+					{
+						if (q->rgbBlue == 0)
+							countnum++;
+					}
+				}
+				rgbspot[countnum]++;
+			}
+		}
+	}
+	acountspotamount = rgbspot[8] + rgbspot[7] + rgbspot[6];
+	if (acountspotamount<=20)
+	    discardmakeuprgbspot(0);
+	else
+		discardmakeuprgbspot(1);
+}
+rgbcolor virtualdiscardrgbspot(imagergb p)
+{
+	int  k, s, countnum, numb, numg, numr, amountdiffer;
+	imagergb  q;
+	rgbcolor imagergbcolor, aroundimagergbcolor, changeimagergbcolor;
+	imagergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	aroundimagergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	numb = p->rgbBlue / 15;
+	numg = p->rgbGreen / 15;
+	numr = p->rgbRed / 15;
+	if (numb == 17)
+		numb = 16;
+	if (numg == 17)
+		numg = 16;
+	if (numr == 17)
+		numr = 16;
+	imagergbcolor->numb = numb;
+	imagergbcolor->numg = numg;
+	imagergbcolor->numr = numr;
+	countnum = 0;
+	for (k = 0; k < 3; k++)
+	{
+		for (s = 0, q = p + width*(k - 1) - 1; s < 3; s++, q++)
+		{
+			numb = q->rgbBlue / 15;
+			numg = q->rgbGreen / 15;
+			numr = q->rgbRed / 15;
+			if (numb == 17)
+				numb = 16;
+			if (numg == 17)
+				numg = 16;
+			if (numr == 17)
+				numr = 16;
+			aroundimagergbcolor->numb = numb;
+			aroundimagergbcolor->numg = numg;
+			aroundimagergbcolor->numr = numr;
+			amountdiffer = countstatisticscolor(imagergbcolor, aroundimagergbcolor);
+			if (amountdiffer > 10)
+			{
+				countnum++;
+			}
+		}
+	}
+	if (countnum > 4)
+		return rgbamount;
+	else
+		return imagergbcolor;
+}
+int originalstatisticsrgbcolor()
+{
+	int i, j, k, numb, numg, numr, firstcountamount = 0;
+	int statisticsrgb[17][17][17];
+	imagergb p;
+	rgbcolor q;
+	for (i = 0; i < 17; i++)
+	{
+		for (j = 0; j < 17; j++)
+		{
+			for (k = 0; k < 17; k++)
+			{
+				statisticsrgb[i][j][k] = 0;
+			}
+		}
+	}
+	for (i = 1; i < height - 1; i++)
+	{
+		for (p = rgb + width*i, j = 0; j < width - 2; p++, j++)
+		{
+			numb = p->rgbBlue / 15;
+			numg = p->rgbGreen / 15;
+			numr = p->rgbRed / 15;
+			if (numb == 17)
+				numb = 16;
+			if (numg == 17)
+				numg = 16;
+			if (numr == 17)
+				numr = 16;
+			statisticsrgb[numb][numg][numr]++;
+			if (p->rgbReversed != 255)
+				rgbReversedture = 1;
+		}
+	}
+	for (i = 0; i < 17; i++)
+	{
+		for (j = 0; j < 17; j++)
+		{
+			for (k = 0; k < 17; k++)
+			{
+				if (statisticsrgb[i][j][k]>0)
+					firstcountamount++;
+			}
+		}
+	}
+	rgbamount = (rgbcolor)malloc((firstcountamount)*sizeof(RGB_AMOUNT));
+	for (i = 0, q = rgbamount; i < 17; i++)
+	{
+		for (j = 0; j < 17; j++)
+		{
+			for (k = 0; k < 17; k++)
+			{
+				if (statisticsrgb[i][j][k]>0)
+				{
+					q->numb = i;
+					q->numg = j;
+					q->numr = k;
+					q->amount = statisticsrgb[i][j][k];
+					q->location = 0;
+					q++;
+				}
+			}
+		}
+	}
+	return firstcountamount;
+}
+void proceddingstatisticsrgbcolor(int firstcountamount)
+{
+	int i, j, countamount = 0, amountdiffer;
+	rgbcolor q, s;
+	bubblesort(firstcountamount);
+	if (firstcountamount > 5)
+	{
+		for (i = 0, q = rgbamount; i < firstcountamount - 1; i++, q++)
+		{
+			if (q->amount != 0)
+			{
+				for (j = i + 1, s = q + 1; j < firstcountamount; j++, s++)
+				{
+					amountdiffer = countstatisticscolor(q, s);
+					if (amountdiffer <= 2)
+					{
+						q->amount = q->amount + s->amount;
+						s->amount = 0;
+					}
+				}
+			}
+		}
+		countcolorvarietyamount = 0;
+		for (i = 0, q = rgbamount; i < firstcountamount - 1; i++, q++)
+		{
+			if (q->amount> 0)
+			{
+				countcolorvarietyamount++;
+			}
+		}
+		bubblesort(firstcountamount);
+	}
+	else
+	{
+		countcolorvarietyamount = firstcountamount;
+	}
+	for (i = 0, q = rgbamount; i<10; i++, q++)
+	{
+		cout << q->amount << " " << q->numb << " " << q->numg << " " << q->numr << endl;
+	}
+	cout << endl;
+}
+void statisticsrgbcolor()
+{
+	int firstcountamount;
+	firstcountamount=originalstatisticsrgbcolor();
+	proceddingstatisticsrgbcolor(firstcountamount);
+}
+void findrgbposition()
+{
+	int i, j, inext, jnext, k, numb, numg, numr, numamount, coloramount = 0, signwidth, location, nextamount;
+	int  amountdiffer, heightnumamount, absentwidthamount;
+	imagergb p, pnext;
+	rgbcolor s, q, imagergbcolor;
+	imagergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	for (k = 0, s = rgbamount + 1; k < countcolorvarietyamount; k++, s++)
+	{
+		numamount = 0;
+		absentwidthamount = 0;
+		for (i = 1; i < width - 1; i++)
+		{
+			heightnumamount = 0;
+			for (p = rgb + i, j = 0; j < height - 2; p = p + width, j++)
+			{
+				numb = p->rgbBlue / 15;
+				numg = p->rgbGreen / 15;
+				numr = p->rgbRed / 15;
+				if (numb == 17)
+					numb = 16;
+				if (numg == 17)
+					numg = 16;
+				if (numr == 17)
+					numr = 16;
+				imagergbcolor->numb = numb;
+				imagergbcolor->numg = numg;
+				imagergbcolor->numr = numr;
+				amountdiffer = countstatisticscolor(s, imagergbcolor);
+				if (numamount > 0 && amountdiffer <= 2)
+					heightnumamount++;
+				if (numamount == 0 && amountdiffer <= 2)
+				{
+					numamount++;
+					heightnumamount++;
+					signwidth = i;
+				}
+			}
+			numamount = numamount + heightnumamount;
+			if (numamount != 0 && heightnumamount == 0)
+				absentwidthamount++;
+			if (absentwidthamount > 10)
+			{
+				numamount = 0;
+				absentwidthamount = 0;
+			}
+			/*if (i - signwidth > 60)
+			{
+			numamount = 0;
+			absentwidthamount = 0;
+			signwidth = i;
+			}*/
+			if (/*i - signwidth <= 60 &&*/ numamount > (s->amount * 2 / 3))
+			{
+				nextamount = 0;
+				for (inext = i; inext - i < 3; inext++)
+				{
+					for (pnext = rgb + inext + 1, jnext = 0; jnext < height - 2; pnext = pnext + width, jnext++)
+					{
+						numb = pnext->rgbBlue / 15;
+						numg = pnext->rgbGreen / 15;
+						numr = pnext->rgbRed / 15;
+						if (numb == 17)
+							numb = 16;
+						if (numg == 17)
+							numg = 16;
+						if (numr == 17)
+							numr = 16;
+						imagergbcolor->numb = numb;
+						imagergbcolor->numg = numg;
+						imagergbcolor->numr = numr;
+						amountdiffer = countstatisticscolor(s, imagergbcolor);
+						if (amountdiffer <= 2)
+							nextamount++;
+					}
+				}
+				if (nextamount == 0)
+				{
+					location = (signwidth + i) / 2;
+					if (coloramount == 0)
+					{
+						s->location = location;
+						coloramount++;
+					}
+					else
+					{
+						for (q = s - 1; q != rgbamount; q--)
+						{
+							if (q->location != 0 && (q->location - location<40 && q->location - location>-40))
+								break;
+						}
+						if (q == rgbamount && !((q + 1)->location - location<40 && (q + 1)->location - location>-40))
+						{
+							s->location = location;
+							coloramount++;
+						}
+					}
+					break;
+				}
+			}
+		}
+		if (coloramount == 4)
+			break;
+	}
+	for (i = 0, q = rgbamount + 1, s = rgbamount + 1; i < 4;q++)
+	{
+		if (q->location != 0)
+		{
+			if (s != q)
+			{
+				s->amount = q->amount;
+				s->location = q->location;
+				s->numb = q->numb;
+				s->numg = q->numg;
+				s->numr = q->numr;
+			}
+			s++;
+			i++;
+		}			
+	}
+	for (i = 0, q = rgbamount; i<5; i++, q++)
+	{
+		cout << q->amount << " " << q->numb << " " << q->numg << " " << q->numr << " " << q->location << endl;
+	}
+
+}
+void discardmakeupcolorspot()
+{
+	int i, j, k, s, countnum, amountdiffer, numb, numg,numr;
+	rgbcolor srgba, imagergbcolor,sidergbcolor;
+	imagergb  p, q;
+	imagergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	sidergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	for (srgba = rgbamount + 1; srgba - (rgbamount + 1) < 4; srgba++)
+	{
+		for (i = 1; i <height - 1; i++)
+		{
+			for (j = 1, p = rgb + i*width + 1; j < width - 1; j++, p++)
+			{
+				numb = p->rgbBlue / 15;
+				numg = p->rgbGreen / 15;
+				numr = p->rgbRed / 15;
+				if (numb == 17)
+					numb = 16;
+				if (numg == 17)
+					numg = 16;
+				if (numr == 17)
+					numr = 16;
+				imagergbcolor->numb = numb;
+				imagergbcolor->numg = numg;
+				imagergbcolor->numr = numr;
+				amountdiffer = countstatisticscolor(imagergbcolor, srgba);
+				if (amountdiffer<=4)
+				{
+					countnum = 0;
+					for (k = 0; k < 3; k++)
+					{
+						for (s = 0, q = p + width*(k - 1) - 1; s < 3; s++, q++)
+						{
+							numb = q->rgbBlue / 15;
+							numg = q->rgbGreen / 15;
+							numr = q->rgbRed / 15;
+							if (numb == 17)
+								numb = 16;
+							if (numg == 17)
+								numg = 16;
+							if (numr == 17)
+								numr = 16;
+							imagergbcolor->numb = numb;
+							imagergbcolor->numg = numg;
+							imagergbcolor->numr = numr;
+							amountdiffer = countstatisticscolor(imagergbcolor, srgba);
+							if (amountdiffer > 4)
+							{
+								amountdiffer = countstatisticscolor(imagergbcolor, rgbamount);
+								if (amountdiffer > 10)
+								{
+									sidergbcolor->numb = imagergbcolor->numb;
+									sidergbcolor->numg = imagergbcolor->numg;
+									sidergbcolor->numr = imagergbcolor->numr;
+								}								
+								countnum++;
+							}								
+						}
+					}
+					if (countnum>5)
+					{
+						p->rgbBlue = sidergbcolor->numb*15;
+						p->rgbGreen = sidergbcolor->numg*15;
+						p->rgbRed = sidergbcolor->numr*15;
+					}
+				}
+			}
+		}
+		
+	}
+
+}
+void discardextraline(imagergb p, rgbcolor q, int yp,int xp)
+{
+	int i, j, numb, numg, numr, countnumleft, countnumright, countnumup, countnumdown,positiondowm,positionup,positionright,positionleft;
+	int   amountdifferup, amountdifferdown, amountdifferleft, amountdifferright;
+	imagergb qup, qdown, kleft, kright;
+	rgbcolor s, imagergbcolorone, imagergbcolortwo, imagergbcolorthree, imagergbcolorfour, rgbleft, rgbright, rgbup, rgbdown;
+	imagergbcolorone = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	imagergbcolortwo = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	imagergbcolorthree = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	imagergbcolorfour = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	countnumup = 0;
+	countnumdown = 0;
+	countnumleft = 0;
+	countnumright = 0;
+	for (i = 1; i <= 10; i++)
+	{
+		qdown = p + i*width;
+		if (width*(height - 1) < qdown - rgb)
+		{
+			qdown = rgb + width*(height - 2) + xp;
+		}			
+		qup = p - i*width;
+		if (width > qup - rgb)
+		{
+			qup = rgb + width + xp;
+		}		
+		kright = p + i;//可以修改，防止超出矩阵
+		kleft = p - i;
+		positiondowm = xp;
+		positionup = xp;
+		positionright = xp + i;
+		positionleft = xp - i;
+		if (countnumup == 0)
+		{
+			numb = qup->rgbBlue / 15;
+			numg = qup->rgbGreen / 15;
+			numr = qup->rgbRed / 15;
+			if (numb == 17)
+				numb = 16;
+			if (numg == 17)
+				numg = 16;
+			if (numr == 17)
+				numr = 16;
+			imagergbcolorone->numb = numb;
+			imagergbcolorone->numg = numg;
+			imagergbcolorone->numr = numr;
+		}
+		if (countnumdown == 0)
+		{
+			numb = qdown->rgbBlue / 15;
+			numg = qdown->rgbGreen / 15;
+			numr = qdown->rgbRed / 15;
+			if (numb == 17)
+				numb = 16;
+			if (numg == 17)
+				numg = 16;
+			if (numr == 17)
+				numr = 16;
+			imagergbcolortwo->numb = numb;
+			imagergbcolortwo->numg = numg;
+			imagergbcolortwo->numr = numr;
+		}
+		if (countnumleft == 0)
+		{
+			numb = kleft->rgbBlue / 15;
+			numg = kleft->rgbGreen / 15;
+			numr = kleft->rgbRed / 15;
+			if (numb == 17)
+				numb = 16;
+			if (numg == 17)
+				numg = 16;
+			if (numr == 17)
+				numr = 16;
+			imagergbcolorthree->numb = numb;
+			imagergbcolorthree->numg = numg;
+			imagergbcolorthree->numr = numr;
+		}
+		if (countnumright == 0)
+		{
+			numb = kright->rgbBlue / 15;
+			numg = kright->rgbGreen / 15;
+			numr = kright->rgbRed / 15;
+			if (numb == 17)
+				numb = 16;
+			if (numg == 17)
+				numg = 16;
+			if (numr == 17)
+				numr = 16;
+			imagergbcolorfour->numb = numb;
+			imagergbcolorfour->numg = numg;
+			imagergbcolorfour->numr = numr;
+		}
+		for (j = 0, s = rgbamount; j < 5; s++, j++)
+		{
+			if (q == rgbamount || s != q)
+			{
+				amountdifferup = countstatisticscolor(imagergbcolorone, s);
+				amountdifferdown = countstatisticscolor(imagergbcolortwo, s);
+				if (countnumup == 0 && amountdifferup <= 4)
+				{
+					if (s == rgbamount || (s != rgbamount && positionup - s->location<50 && positionup - s->location>-50))
+					{
+						rgbup = s;
+						countnumup = 1;
+					}				
+				}
+				if (countnumdown == 0 && amountdifferdown <= 4)
+				{
+					if (s == rgbamount || (s != rgbamount && positiondowm - s->location<50 && positiondowm - s->location>-50))
+					{
+						rgbdown = s;
+						countnumdown = 1;
+					}
+				}
+				amountdifferleft = countstatisticscolor(imagergbcolorthree, s);
+				amountdifferright = countstatisticscolor(imagergbcolorfour, s);
+				if (countnumleft == 0 && amountdifferleft <= 4)
+				{
+					if (s == rgbamount || (s != rgbamount && positionleft - s->location<50 && positionleft - s->location>-50))
+					{
+						rgbleft = s;
+						countnumleft = 1;
+					}
+				}
+				if (countnumright == 0 && amountdifferright <= 4)
+				{
+					if (s == rgbamount || (s != rgbamount && positionright - s->location<50 && positionright - s->location>-50))
+					{
+						rgbright = s;
+						countnumright = 1;
+					}
+				}
+			}		
+		}
+		if ((countnumup == 1 && countnumdown == 1 && rgbamount == rgbup && rgbamount == rgbdown))
+		{
+			if (!((countnumleft == 1 && rgbleft != rgbamount) || (countnumright == 1 && rgbright != rgbamount)))
+			{
+				p->rgbBlue = (rgbamount->numb) * 15;
+				p->rgbGreen = (rgbamount->numg) * 15;
+				p->rgbRed = (rgbamount->numr) * 15;
+			}
+			break;
+		}
+		else if ((countnumleft == 1 && countnumright == 1 && rgbamount == rgbleft && rgbamount == rgbright))
+		{
+			if (!((countnumup == 1 && rgbup != rgbamount) || (countnumdown == 1 && rgbdown != rgbamount)))
+			{
+				p->rgbBlue = (rgbamount->numb) * 15;
+				p->rgbGreen = (rgbamount->numg) * 15;
+				p->rgbRed = (rgbamount->numr) * 15;
+			}
+			break;
+		}
+	}
+	//p->rgbBlue = 0;
+	//p->rgbGreen = 0;
+	//p->rgbRed = 0;
+	
+}
+int acountbackgroundcolorquantity()
+{
+	int i, j, ifront, countnum, countnumfalse, amountdiffer;
+	rgbcolor s, imagergbcolor;
+	imagergb  p;
+	imagergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	for (s = rgbamount + 1; s - (rgbamount + 1) < 3; s++)
+	{	
+		amountdiffer = countstatisticscolor(rgbamount, s);
+		if (amountdiffer>4)
+		{
+			countnum = 0;
+			countnumfalse = 0;
+			for (i = 1; i < width - 1; i++)
+			{
+				for (p = rgb + i, j = 0; j <height - 2; p = p + width, j++)
+				{
+					imagergbcolor = virtualdiscardrgbspot(p);
+					amountdiffer = countstatisticscolor(imagergbcolor, s);
+					if (amountdiffer <= 2)
+					{
+						countnum++;
+						break;								
+					}
+				}
+				if (j == height - 2 && countnumfalse > 0 && countnum > 0)
+				{
+					if (i - ifront == 1)
+					{
+						countnumfalse++;
+						ifront = i;
+					}
+					else
+						countnumfalse = 0;				
+				}			
+				if (j == height - 2 && countnumfalse == 0 && countnum > 0)
+				{
+					countnumfalse = 1;
+					ifront = i;
+				}
+				if (countnum > 0 && countnumfalse > 1 && i<width*2/3)
+				{
+					countnum = 0;
+					countnumfalse = 0;
+				}
+				if (countnum > width / 3 && rgbamount->amount/s->amount<=10)
+				{
+					cout << s - rgbamount << endl;
+					return s - rgbamount;
+				}
+		    }				
+		}				
+	}
+	return 0;
+}
+void treatmentimageone(int backlocation)
+{
+	int i, numb, numg, numr, amountdifferone, amountdiffertwo;
+	imagergb p;
+	rgbcolor imagergbcolor;
+	imagergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	for (p = rgb, i = 0; i < width*height; p++, i++)
+	{
+		numb = p->rgbBlue / 15;
+		numg = p->rgbGreen / 15;
+		numr = p->rgbRed / 15;
+		if (numb == 17)
+			numb = 16;
+		if (numg == 17)
+			numg = 16;
+		if (numr == 17)
+			numr = 16;
+		imagergbcolor->numb = numb;
+		imagergbcolor->numg = numg;
+		imagergbcolor->numr = numr;
+		amountdifferone = countstatisticscolor(imagergbcolor, rgbamount);
+		amountdiffertwo = countstatisticscolor(imagergbcolor, rgbamount + backlocation);
+		if (amountdifferone <= 6 || amountdiffertwo <= 6)
+		{
+			p->rgbBlue = 0;
+			p->rgbGreen = 0;
+			p->rgbRed = 0;
+		}
+		else
+		{
+			p->rgbBlue = 255;
+			p->rgbGreen = 255;
+			p->rgbRed = 255;
+		}
+	}
+}
+void treatmentimagetwo()
+{
+	int i, numb, numg, numr, amountdiffer;
+	imagergb p;
+	rgbcolor imagergbcolor;
+	imagergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	for (p = rgb, i = 0; i < width*height; p++, i++)
+	{
+		numb = p->rgbBlue / 15;
+		numg = p->rgbGreen / 15;
+		numr = p->rgbRed / 15;
+		if (numb == 17)
+			numb = 16;
+		if (numg == 17)
+			numg = 16;
+		if (numr == 17)
+			numr = 16;
+		imagergbcolor->numb = numb;
+		imagergbcolor->numg = numg;
+		imagergbcolor->numr = numr;
+		amountdiffer = countstatisticscolor(imagergbcolor, rgbamount);
+		if (amountdiffer <= 4)
+		{
+			p->rgbBlue = 0;
+			p->rgbGreen = 0;
+			p->rgbRed = 0;
+		}
+		else
+		{
+			p->rgbBlue = 255;
+			p->rgbGreen = 255;
+			p->rgbRed = 255;
+		}
+	}
+	
+}
+void treatmentimagethree()
+{
+	int  i, j, numb, numg, numr,tureposition;
+	int  amountdiffer;
+	imagergb p;
+	rgbcolor s, q, imagergbcolor;
+	imagergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	findrgbposition();
+	discardmakeupcolorspot();
+	for (i = 1; i < height - 1; i++)
+	{
+		for (p = rgb + width*i+1, j = 1; j < width - 1; p++, j++)
+		{
+			numb = p->rgbBlue / 15;
+			numg = p->rgbGreen / 15;
+			numr = p->rgbRed / 15;
+			if (numb == 17)
+				numb = 16;
+			if (numg == 17)
+				numg = 16;
+			if (numr == 17)
+				numr = 16;
+			imagergbcolor->numb = numb;
+			imagergbcolor->numg = numg;
+			imagergbcolor->numr = numr;
+			amountdiffer = countstatisticscolor(imagergbcolor, rgbamount);
+			tureposition = -1;
+			q = rgbamount;
+			//if (i == 48 && j == 180)
+			//	cout << endl;
+			for (s = rgbamount+1; s - (rgbamount+1) < 4; s++)
+			{
+				amountdiffer = countstatisticscolor(imagergbcolor, s);
+				if (amountdiffer <= 4 && j - s->location <= 30 && j - s->location >= -30)
+				{
+					tureposition = 1;
+					//p->rgbBlue = 0;
+					//p->rgbGreen = 0;
+					//p->rgbRed = 0;
+					q = rgbamount;
+					break;
+				}				
+				else if (amountdiffer <= 4 && (j - s->location>30 || j - s->location < -30))
+				{
+					tureposition = 0;
+					q = s;
+				}
+			}
+			if (tureposition == -1)
+				discardextraline(p,q,i,j);
+			else if (tureposition == 0)
+				discardextraline(p,q,i,j);
+		}
+	}
+	for (p = rgb, i = 0; i < width*height; p++, i++)
+	{
+		numb = p->rgbBlue / 15;
+		numg = p->rgbGreen / 15;
+		numr = p->rgbRed / 15;
+		if (numb == 17)
+			numb = 16;
+		if (numg == 17)
+			numg = 16;
+		if (numr == 17)
+			numr = 16;
+		imagergbcolor->numb = numb;
+		imagergbcolor->numg = numg;
+		imagergbcolor->numr = numr;
+		amountdiffer = countstatisticscolor(imagergbcolor, rgbamount);
+		if (amountdiffer <= 4)
+		{
+			p->rgbBlue = 0;
+			p->rgbGreen = 0;
+			p->rgbRed = 0;
+		}
+		else
+		{
+			p->rgbBlue = 255;
+			p->rgbGreen = 255;
+			p->rgbRed = 255;
+		}
+	}
+}
+void treatmentimagefour()
+{
+	int i, j, k, s,numb, numg, numr, amountdiffer;
+	imagergb p,q;
+	rgbcolor imagergbcolor;
+	imagergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	if (countcolorvarietyamount == 1)
+	{
+		for (i = 1; i <height - 1; i++)
+		{
+			for (j = 1, p = rgb + i*width + 1; j < width - 1; j++, p++)
+			{
+				if (p->rgbReversed == 255)
+				{
+					p->rgbBlue = 255;
+					p->rgbGreen = 255;
+					p->rgbRed = 255;
+				}
+				else
+				{
+					p->rgbReversed = 255;
+					for (k = 0; k < 3; k++)
+					{
+						for (s = 0, q = p + width*(k - 1) - 1; s < 2; s++, q++)
+						{
+							q->rgbBlue = 0;
+							q->rgbGreen = 0;
+							q->rgbRed = 0;
+						}
+					}
+				}
+			}
+		}	
+	}
+	else
+	{
+		for (i = 1; i <height - 1; i++)
+		{
+			for (j = 1, p = rgb + i*width + 1; j < width - 1; j++, p++)
+			{
+				if (p->rgbReversed != 255)
+				{
+					p->rgbReversed = 255;
+					for (k = 0; k < 3; k++)
+					{
+						for (s = 0, q = p + width*(k - 1) - 1; s < 2; s++, q++)
+						{
+							q->rgbBlue = rgbamount->numb * 15;
+							q->rgbGreen = rgbamount->numg * 15;
+							q->rgbRed = rgbamount->numr * 15;
+						}
+					}
+				}
+			}
+		}
+		for (p = rgb, i = 0; i < width*height; p++, i++)
+		{
+			numb = p->rgbBlue / 15;
+			numg = p->rgbGreen / 15;
+			numr = p->rgbRed / 15;
+			if (numb == 17)
+				numb = 16;
+			if (numg == 17)
+				numg = 16;
+			if (numr == 17)
+				numr = 16;
+			imagergbcolor->numb = numb;
+			imagergbcolor->numg = numg;
+			imagergbcolor->numr = numr;
+			amountdiffer = countstatisticscolor(imagergbcolor, rgbamount);
+			if (amountdiffer <= 2)
+			{
+				p->rgbBlue = 0;
+				p->rgbGreen = 0;
+				p->rgbRed = 0;
+			}
+			else
+			{
+				p->rgbBlue = 255;
+				p->rgbGreen = 255;
+				p->rgbRed = 255;
+			}
+		}
+	}	
+}
+void dividetreatmentimage()
+{
+	int bgclolor;
+	if (rgbReversedture == 0)
+	{
+		bgclolor = acountbackgroundcolorquantity();
+		if ((bgclolor == 1 || bgclolor == 2 || bgclolor == 3) && width <= 200)
+		{
+			cout << "两种背景小" << endl;
+			treatmentimageone(bgclolor);//两种背景颜色小图		
+		}
+		else if (bgclolor == 0 && width <= 200)
+		{
+			cout << "一种背景小" << endl;
+			treatmentimagetwo();//一种背景颜色小图			
+		}
+		else if (bgclolor == 0 && width>200)
+		{
+			cout << "一种背景大" << endl;
+			treatmentimagethree();//一种背景颜色的大图			
+		}
+	}
+	else
+	{
+		cout << "图像颜色极少的图" << endl;
+		treatmentimagefour();//图像颜色极少的图		
+	}
+}
+void readimagergb()
+{
+	imagergb  p;
+	int i, j;
+	WebClient^ wc = gcnew WebClient();
+	MemoryStream^ ms = gcnew MemoryStream(wc->DownloadData("http://202.96.189.88/Pages/Foreground/Common/ValidateCodeImage.aspx?Date=2015-4-14 17:44:05"));
+	Bitmap^ originalbm = gcnew Bitmap(ms);
+	//Bitmap^ originalbm = gcnew Bitmap("20.jpg");
+	width = originalbm->Width;
+	height = originalbm->Height;
+	rgb = (imagergb)malloc((width *height)*sizeof(RGBQUADS));
+	for (i = 0, p = rgb; i <height; i = i + 1)
+	{
+		for (j = 0; j < width; j = j + 1, p++)
+		{
+			Color c = originalbm->GetPixel(j, i);
+			p->rgbBlue = c.B;
+			p->rgbGreen = c.G;
+			p->rgbRed = c.R;
+			p->rgbReversed = c.A;
+		}
+	}
+}
+void writeimagergb()
+{
+	int i, j;
+	imagergb  p;
+	Bitmap^ modifybm = gcnew Bitmap(width, height);
+	for (i = 0; i <height; i++)
+	{
+		for (j = 0, p = rgb + i*width; j < width; j++, p++)
+		{
+			modifybm->SetPixel(j, i, Color::FromArgb(p->rgbRed, p->rgbGreen, p->rgbBlue));
+		}
+	}
+	modifybm->Save("处理图.bmp");
+}
+void discardframe()
+{
+	int i, j;
+	imagergb p, q;
+	for (i = 0, p = rgb; i < width; i++, p++)
+	{
+		p->rgbBlue = rgbamount->numb * 15;
+		p->rgbGreen = rgbamount->numg * 15;
+		p->rgbRed = rgbamount->numr * 15;
+		(p + (height - 1)*width)->rgbBlue = rgbamount->numb*15;
+		(p + (height - 1)*width)->rgbGreen = rgbamount->numg*15;
+		(p + (height - 1)*width)->rgbRed = rgbamount->numr*15;
+	}
+	for (j = 0, q = rgb; j <height; j++, q = q + width)
+	{
+		q->rgbBlue = rgbamount->numb * 15;
+		q->rgbGreen = rgbamount->numg * 15;
+		q->rgbRed = rgbamount->numr * 15;
+		(q + width - 1)->rgbBlue = rgbamount->numb*15;
+		(q + width - 1)->rgbGreen = rgbamount->numg*15;
+		(q + width - 1)->rgbRed = rgbamount->numr*15;
+	}
+}
+void pretreatmentimage()
+{
+	statisticsrgbcolor();
+	discardframe();
+	dividetreatmentimage();
+	dividetreatrgbspot();
+}
+int main()
+{
+	readimagergb();
+	pretreatmentimage();
+	writeimagergb();
+	system("pause");
+	return 0;
+}

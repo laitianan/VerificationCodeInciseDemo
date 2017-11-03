@@ -1,0 +1,419 @@
+// ConsoleApplication.cpp: 主项目文件。
+
+#include "stdafx.h"
+#include<stdio.h>
+#include<malloc.h>  
+#include<string.h> 
+#include<math.h>
+#include<stdlib.h>
+#include<iostream>  
+#include <windows.h> 
+
+using namespace std;
+using namespace System;
+using namespace System::Drawing;
+using namespace System::Net;
+using namespace System::IO;
+
+typedef struct RGB_QUAD
+{
+	int rgbBlue;         
+	int rgbGreen;        
+	int rgbRed;         
+} RGBQUADS, *imagergb;
+typedef struct RGB_COLOR
+{
+	int numb;
+	int numg;
+	int numr;
+	int amount;
+}RGB_AMOUNT, *rgbcolor;
+
+imagergb rgb, rgbregister, backgroundrgb;
+rgbcolor rgbamount;
+int width, height,countcolorvarietyamount;
+
+int countstatisticscolor(rgbcolor p, rgbcolor q)
+{
+	int amountdiffer, rgbrgbBluespot, rgbrgbGreenspot, rgbrgbRedspot;
+	rgbrgbBluespot = p->numb - ((q)->numb);
+	rgbrgbGreenspot = p->numg - ((q)->numg);
+	rgbrgbRedspot = p->numr - ((q)->numr);
+	if (rgbrgbBluespot < 0)
+		rgbrgbBluespot = -rgbrgbBluespot;
+	if (rgbrgbGreenspot < 0)
+		rgbrgbGreenspot = -rgbrgbGreenspot;
+	if (rgbrgbRedspot < 0)
+		rgbrgbRedspot = -rgbrgbRedspot;
+	amountdiffer = rgbrgbBluespot + rgbrgbGreenspot + rgbrgbRedspot;
+	return amountdiffer;
+}
+void bubblesort(int countamount)
+{
+	int i, j, numb, numg, numr, amount;
+	rgbcolor q, s;
+	for (i = 0, q = rgbamount; i <countamount - 1; i++, q++)
+	{
+		for (j = i + 1, s = q + 1; j < countamount; j++, s++)
+		{
+			if (s->amount>q->amount)
+			{
+				numb = q->numb;
+				numg = q->numg;
+				numr = q->numr;
+				amount = q->amount;
+				q->numb = s->numb;
+				q->numg = s->numg;
+				q->numr = s->numr;
+				q->amount = s->amount;
+				s->numb = numb;
+				s->numg = numg;
+				s->numr = numr;
+				s->amount = amount;
+			}
+		}
+	}
+}
+int originalstatisticsrgbcolor()
+{
+	int i, j, k, numb, numg, numr,firstcountamount = 0;
+	int statisticsrgb[17][17][17];
+	imagergb p;
+	rgbcolor q;
+	for (i = 0; i < 17; i++)
+	{
+		for (j = 0; j < 17; j++)
+		{
+			for (k = 0; k < 17; k++)
+			{
+				statisticsrgb[i][j][k] = 0;
+			}
+		}
+	}
+	for (i = 1; i < height - 1; i++)
+	{
+		for (p = rgb + width*i, j = 0; j < width - 2; p++, j++)
+		{
+			numb = p->rgbBlue / 15;
+			numg = p->rgbGreen / 15;
+			numr = p->rgbRed / 15;
+			if (numb == 17)
+				numb = 16;
+			if (numg == 17)
+				numg = 16;
+			if (numr == 17)
+				numr = 16;
+			statisticsrgb[numb][numg][numr]++;
+		}
+	}
+	for (i = 0; i < 17; i++)
+	{
+		for (j = 0; j < 17; j++)
+		{
+			for (k = 0; k < 17; k++)
+			{
+				if (statisticsrgb[i][j][k]>0)
+					firstcountamount++;
+			}
+		}
+	}
+	rgbamount = (rgbcolor)malloc((firstcountamount)*sizeof(RGB_AMOUNT));
+	for (i = 0, q = rgbamount; i < 17; i++)
+	{
+		for (j = 0; j < 17; j++)
+		{
+			for (k = 0; k < 17; k++)
+			{
+				if (statisticsrgb[i][j][k]>0)
+				{
+					q->numb = i;
+					q->numg = j;
+					q->numr = k;
+					q->amount = statisticsrgb[i][j][k];
+					q++;
+				}
+			}
+		}
+	}
+	return firstcountamount;
+}
+void proceddingstatisticsrgbcolor(int firstcountamount)
+{
+	int i, j, countamount = 0, amountdiffer;
+	rgbcolor q, s;
+	bubblesort(firstcountamount);
+	if (firstcountamount > 5)
+	{
+		for (i = 0, q = rgbamount; i < firstcountamount - 1; i++, q++)
+		{
+			if (q->amount != 0)
+			{
+				for (j = i + 1, s = q + 1; j < firstcountamount; j++, s++)
+				{
+					amountdiffer = countstatisticscolor(q, s);
+					if (amountdiffer <= 4)
+					{
+						q->amount = q->amount + s->amount;
+						s->amount = 0;
+					}
+				}
+			}
+		}
+		countcolorvarietyamount = 0;
+		for (i = 0, q = rgbamount; i < firstcountamount - 1; i++, q++)
+		{
+			if (q->amount> 0)
+			{
+				countcolorvarietyamount++;
+			}
+		}
+		bubblesort(firstcountamount);
+	}
+	else
+	{
+		countcolorvarietyamount = firstcountamount;
+	}
+	for (i = 0, q = rgbamount; i<countcolorvarietyamount; i++, q++)
+	{
+		cout << q->amount << " " << q->numb << " " << q->numg << " " << q->numr << endl;
+	}
+}
+void statisticsrgbcolor()
+{
+	int firstcountamount;
+	firstcountamount=originalstatisticsrgbcolor();
+	proceddingstatisticsrgbcolor(firstcountamount);
+}
+int divideimagevariety()
+{
+	if (countcolorvarietyamount >= 5)
+	{
+		double numone, numtwo;
+		numone = double(rgbamount->amount);
+		numtwo = double((rgbamount + 1)->amount);
+		if (numone/numtwo<2.5 && width<=200)
+		{
+			return 1;//两种背景颜色
+		}
+		else if (numone / numtwo>=2.5 && width <= 200)
+		{
+			return 2;//一种背景颜色
+		}
+		else if (width>200)
+		{
+			return 3;//一种背景颜色的大图
+		}
+	}
+	else
+	{
+		return 4;//图像颜色极少的图
+	}
+	return 0;
+}
+void treatmentimageone()
+{
+	int i, j, numb, numg, numr,amountdiffer;
+	imagergb p;
+	rgbcolor imagergbcolor;
+	imagergbcolor = (rgbcolor)malloc((1)*sizeof(RGB_AMOUNT));
+	for (p = rgb, i = 0; i < width*height; p++, i++)
+	{
+		numb = p->rgbBlue / 15;
+		numg = p->rgbGreen / 15;
+		numr = p->rgbRed / 15;
+		if (numb == 17)
+			numb = 16;
+		if (numg == 17)
+			numg = 16;
+		if (numr == 17)
+			numr = 16;
+		imagergbcolor->numb = numb;
+		imagergbcolor->numg = numg;
+		imagergbcolor->numr = numr;
+		for (j = 0; j < 2; j++)
+		{
+			amountdiffer = countstatisticscolor(imagergbcolor, rgbamount+j);
+			if (amountdiffer <= 6)
+			{
+				p->rgbBlue = 255;
+				p->rgbGreen = 255;
+				p->rgbRed = 255;
+				break;
+			}
+		}
+		if (amountdiffer > 6 && j==2)
+		{
+			p->rgbBlue = 0;
+			p->rgbGreen = 0;
+			p->rgbRed = 0;
+		}
+	}
+}
+void treatmentimagetwo()
+{
+
+}
+void treatmentimagethree()
+{
+
+}
+void treatmentimagefour()
+{
+
+}
+void treatmentimage(int imagetype)
+{
+	if (imagetype == 1)
+	{
+		treatmentimageone();
+	}
+	else if (imagetype == 2)
+	{
+		treatmentimagetwo();
+	}
+	else if (imagetype == 3)
+	{
+		treatmentimagethree();
+	}
+	else if (imagetype == 4)
+	{
+		treatmentimagefour();
+	}
+
+}
+void readimagergb()
+{
+	imagergb  p;
+	int i, j;
+	WebClient^ wc = gcnew WebClient();
+	MemoryStream^ ms = gcnew MemoryStream(wc->DownloadData("http://www.zhcgs.gov.cn/Reservation/GetValidateCode"));
+	Bitmap^ originalbm = gcnew Bitmap(ms);
+	//Bitmap^ originalbm = gcnew Bitmap("3.bmp");
+	width = originalbm->Width;
+	height = originalbm->Height;
+	rgb = (imagergb)malloc((width *height)*sizeof(RGBQUADS));
+	for (i = 0, p = rgb; i <height; i = i + 1)
+	{
+		for (j = 0; j < width; j = j + 1, p++)
+		{
+			Color c = originalbm->GetPixel(j, i);
+			p->rgbBlue = c.B;
+			p->rgbGreen = c.G;
+			p->rgbRed = c.R;
+		}
+	}
+}
+void writeimagergb()
+{
+	int i, j;
+	imagergb  p;
+	Bitmap^ modifybm = gcnew Bitmap(width, height);
+	for (i = 0; i <height; i++)
+	{
+		for (j = 0, p = rgb + i*width; j < width; j++, p++)
+		{
+			modifybm->SetPixel(j, i, Color::FromArgb(p->rgbRed, p->rgbGreen, p->rgbBlue));
+		}
+	}
+	modifybm->Save("处理图.bmp");
+}
+void discardframe()
+{
+	int i, j;
+	imagergb p, q;
+	for (i = 0, p = rgb; i < width; i++, p++)
+	{
+		p->rgbBlue = 0;
+		p->rgbGreen = 0;
+		p->rgbRed = 0;
+		(p + (height - 1)*width)->rgbBlue = 0;
+		(p + (height - 1)*width)->rgbGreen = 0;
+		(p + (height - 1)*width)->rgbRed = 0;
+	}
+	for (j = 0, q = rgb; j <height; j++, q = q + width)
+	{
+		q->rgbBlue = 0;
+		q->rgbGreen = 0;
+		q->rgbRed = 0;
+		(q + width - 1)->rgbBlue = 0;
+		(q + width - 1)->rgbGreen = 0;
+		(q + width - 1)->rgbRed = 0;
+	}
+}
+void makeuprgbspot()
+{
+	int i, j, k, s, countnum;
+	imagergb  p, q;
+	for (i = 1; i <height - 1; i++)
+	{
+		for (j = 1, p = rgb + i*width + 1; j < width - 1; j++, p++)
+		{
+			if (p->rgbBlue == 0)
+			{
+				countnum = 0;
+				for (k = 0; k < 3; k++)
+				{
+					for (s = 0, q = p + width*(k - 1) - 1; s < 3; s++, q++)
+					{
+						if (q->rgbBlue == 255)
+							countnum++;
+					}
+				}
+				if (countnum>5)
+				{
+					p->rgbBlue = 255;
+					p->rgbGreen = 255;
+					p->rgbRed = 255;
+				}
+			}
+		}
+	}
+}
+void discardfspot()
+{
+	int i, j, k, s, countnum;
+	imagergb  p, q;
+	for (i = 1; i <height - 1; i++)
+	{
+		for (j = 1, p = rgb + i*width + 1; j < width - 1; j++, p++)
+		{
+			if (p->rgbBlue == 255)
+			{
+				countnum = 0;
+				for (k = 0; k < 3; k++)
+				{
+					for (s = 0, q = p + width*(k - 1) - 1; s < 3; s++, q++)
+					{
+						if (q->rgbBlue == 0)
+							countnum++;
+					}
+				}
+				if (countnum>5)
+				{
+					p->rgbBlue = 0;
+					p->rgbGreen = 0;
+					p->rgbRed = 0;
+				}
+			}
+		}
+	}
+
+}
+void pretreatmentimage()
+{
+	int imagetype;
+	statisticsrgbcolor();
+	imagetype = divideimagevariety();
+	treatmentimage(imagetype);
+	makeuprgbspot();
+	discardframe();
+	discardfspot();
+}
+int main()
+{
+	readimagergb();
+	pretreatmentimage();
+	writeimagergb();
+	//system("pause");
+	return 0;
+}

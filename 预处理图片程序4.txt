@@ -1,0 +1,228 @@
+#include<stdio.h>
+#include<malloc.h>  
+#include<string.h> 
+#include<math.h>
+#include<stdlib.h>
+#include<iostream>  
+#include <windows.h> 
+using namespace std;
+
+#pragma pack(2)
+
+/*定义WORD为两个字节的类型*/
+typedef unsigned short WORD;
+/*定义DWORD为e四个字节的类型*/
+typedef unsigned long DWORD;
+
+/*位图文件头*/
+typedef struct BMP_FILE_HEADER
+{
+	WORD bType;             /*  文件标识符          */
+	DWORD bSize;            /*  文件的大小          */
+	WORD bReserved1;        /*  保留值,必须设置为0  */
+	WORD bReserved2;        /*  保留值,必须设置为0  */
+	DWORD bOffset;          /*  文件头的最后到图像数据位开始的偏移量    */
+} BMPFILEHEADER;
+
+/*位图信息头*/
+typedef struct BMP_INFO
+{
+	DWORD bInfoSize;       /*  信息头的大小             */
+	DWORD bWidth;          /*  图像的宽度               */
+	DWORD bHeight;         /*  图像的高度               */
+	WORD bPlanes;          /*  图像的位面数             */
+	WORD bBitCount;        /*  每个像素的位数           */
+	DWORD bCompression;    /*  压缩类型                 */
+	DWORD bmpImageSize;    /*  图像的大小,以字节为单位  */
+	DWORD bXPelsPerMeter;  /*  水平分辨率               */
+	DWORD bYPelsPerMeter;  /*  垂直分辨率               */
+	DWORD bClrUsed;        /*  使用的色彩数             */
+	DWORD bClrImportant;   /*  重要的颜色数             */
+} BMPINF;
+
+/*彩色表*/
+typedef struct RGB_QUAD
+{
+	int rgbBlue;         /*  蓝色强度  */
+	int rgbGreen;        /*  绿色强度  */
+	int rgbRed;          /*  红色强度  */
+	int rgbReversed;     /*  保留值    */
+} RGBQUADS, *imagergb;
+void pretreatmentimage()
+{
+	FILE  *ifp, *ofp;
+	BMPFILEHEADER fileHeader;
+	BMPINF infoHeader;
+	imagergb rgb, p,q,k,rgbregister;
+	int num, beginheight, overheight, cnumberone, cnumbertwo,cimagespot;
+	int rgbspot,rgbrgbBluespot, rgbrgbGreenspot, rgbrgbRedspot;
+	long offset, bmpImageSize, width, height, bytesPerPixel, size, bitCount;
+	//WORD c;
+	int i,j;
+	fopen_s(&ifp, "1.bmp", "rb");
+	if (ifp == NULL)
+	{
+		printf("图片不存在!\n");
+		return;
+	}
+	fopen_s(&ofp, "处理图.bmp", "wb");
+	fseek(ifp, 0, 0);
+	fread(&fileHeader, sizeof(fileHeader), 1, ifp);
+	fread(&infoHeader, sizeof(infoHeader), 1, ifp);
+	//计算并输出位图数据的偏移量，图像的大小，宽度和高度，每个像素点所占的字节
+	size = fileHeader.bSize;
+	offset = fileHeader.bOffset;
+	bmpImageSize = infoHeader.bmpImageSize;
+	width = infoHeader.bWidth;
+	height = infoHeader.bHeight;
+	bitCount = infoHeader.bBitCount;
+	bytesPerPixel = infoHeader.bBitCount / 8;
+
+	printf("%d %d %d %d %d %d\n", size, offset, bmpImageSize, width, height, bitCount, bytesPerPixel);
+	rgb = (imagergb)malloc((width*height)*sizeof(RGBQUADS));
+	p = rgb;
+	fseek(ifp, 0, 0);
+	fseek(ofp, 0, 0);
+	for (i = 0; i < 54; i++)
+	{
+		num = fgetc(ifp);
+		fputc(num, ofp);
+	}
+	for (i = 0; i<width*height; i++,p++)
+	{
+		p->rgbBlue = fgetc(ifp);
+		p->rgbGreen = fgetc(ifp);
+		p->rgbRed = fgetc(ifp);
+		if (bytesPerPixel/8==4)
+		p->rgbReversed=fgetc(ifp);
+	}
+	beginheight =height/2 ;
+	overheight = (height / 3) * 2;
+	cnumberone = 0;
+	cnumbertwo = 0;
+	cimagespot = 0;
+	rgbregister = (imagergb)malloc((20)*sizeof(RGBQUADS));
+	for (i = 0, p = rgb + beginheight*width,q=rgbregister; i<width - 2; p++, i++)
+	{
+		if (cnumberone == 4)
+		{
+			cnumberone = 0;
+			if (cimagespot == 0)
+			{
+				q->rgbBlue = (p - 3)->rgbBlue;
+				q->rgbGreen = (p - 3)->rgbGreen;
+				q->rgbRed = (p - 3)->rgbRed;
+				q++;
+			}
+			else
+			{
+				for (k = q - 1; k != rgbregister; k--)
+				{
+					rgbrgbBluespot = (p - 3)->rgbBlue - ((k)->rgbBlue);
+					rgbrgbGreenspot = (p - 3)->rgbGreen - ((k)->rgbGreen);
+					rgbrgbRedspot = (p - 3)->rgbRed - ((k)->rgbRed);
+					if (rgbrgbBluespot < 0)
+						rgbrgbBluespot = -rgbrgbBluespot;
+					if (rgbrgbGreenspot < 0)
+						rgbrgbGreenspot = -rgbrgbGreenspot;
+					if (rgbrgbRedspot < 0)
+						rgbrgbRedspot = -rgbrgbRedspot;
+					rgbspot = rgbrgbBluespot + rgbrgbGreenspot + rgbrgbRedspot;
+					if (rgbspot>20)
+					{
+						cimagespot++;
+						q->rgbBlue = (p - 3)->rgbBlue;
+						q->rgbGreen = (p - 3)->rgbGreen;
+						q->rgbRed = (p - 3)->rgbRed;
+						q++;
+						break;
+					}
+				}
+				
+			}
+			
+		}
+		if (cnumberone != 0 )
+		{
+			rgbrgbBluespot = p->rgbBlue - ((p + 1)->rgbBlue);
+			rgbrgbGreenspot = p->rgbGreen - ((p + 1)->rgbGreen);
+			rgbrgbRedspot = p->rgbRed - ((p + 1)->rgbRed);
+			if (rgbrgbBluespot < 0)
+				rgbrgbBluespot = -rgbrgbBluespot;
+			if (rgbrgbGreenspot < 0)
+				rgbrgbGreenspot = -rgbrgbGreenspot;
+			if (rgbrgbRedspot < 0)
+				rgbrgbRedspot = -rgbrgbRedspot;
+			rgbspot = rgbrgbBluespot + rgbrgbGreenspot + rgbrgbRedspot;	
+			if (rgbspot <300)
+				cnumberone++;
+			else
+				cnumberone =0;
+
+		}
+		
+		if (cnumberone == 0)
+		{
+			rgbrgbBluespot = p->rgbBlue - ((p + 1)->rgbBlue);
+			rgbrgbGreenspot = p->rgbGreen -((p + 1)->rgbGreen);
+			rgbrgbRedspot = p->rgbRed - ((p + 1)->rgbRed);
+			if (rgbrgbBluespot < 0)
+				rgbrgbBluespot = -rgbrgbBluespot;
+			if (rgbrgbGreenspot < 0)
+				rgbrgbGreenspot = -rgbrgbGreenspot;
+			if (rgbrgbRedspot < 0)
+				rgbrgbRedspot = -rgbrgbRedspot;
+			rgbspot = rgbrgbBluespot + rgbrgbGreenspot + rgbrgbRedspot;
+			if (rgbspot>500)
+			cnumberone = 1;
+		}
+		
+}
+	for (p = rgb, i = 0; i <width*height; p++, i++)
+	{
+		for (q = rgbregister, j = 0; j < cimagespot; q++, j++)
+		{
+			rgbrgbBluespot = p->rgbBlue - ((q)->rgbBlue);
+			rgbrgbGreenspot = p->rgbGreen - ((q)->rgbGreen);
+			rgbrgbRedspot = p->rgbRed - ((q)->rgbRed);
+			if (rgbrgbBluespot < 0)
+				rgbrgbBluespot = -rgbrgbBluespot;
+			if (rgbrgbGreenspot < 0)
+				rgbrgbGreenspot = -rgbrgbGreenspot;
+			if (rgbrgbRedspot < 0)
+				rgbrgbRedspot = -rgbrgbRedspot;
+			rgbspot = rgbrgbBluespot + rgbrgbGreenspot + rgbrgbRedspot;
+			if (rgbspot < 20)
+			{
+				fputc(0, ofp);
+		        fputc(0, ofp);
+		        fputc(0, ofp);
+		        if (bytesPerPixel / 8 == 4)
+			    fputc(p->rgbReversed, ofp);
+				break;
+			}
+		}
+		if (i == rgbspot && rgbspot > 20)
+		{
+			fputc(255, ofp);
+			fputc(255, ofp);
+			fputc(255, ofp);
+			if (bytesPerPixel / 8 == 4)
+				fputc(p->rgbReversed, ofp);
+
+		}
+	}	
+	while (!feof(ifp))
+	{
+		fputc(fgetc(ifp), ofp);
+	}
+
+	fclose(ifp);
+	fclose(ofp);
+}
+int main()
+{
+	pretreatmentimage();
+	return 0;
+}
+

@@ -1,0 +1,137 @@
+﻿生成启动时间为 2016/5/26 10:16:28。
+     1>项目“D:\Documents and Settings\Administrator\Desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\OcrHelper\OcrHelper.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\OcrHelper.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib OcrHelper.cpp
+         OcrHelper.cpp
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(207): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(207): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(207): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(512): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(512): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(512): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(601): warning C4101: “q”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1414): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1414): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1414): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1520): warning C4101: “s”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1966): warning C4101: “sum”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2000): warning C4101: “p”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1998): warning C4101: “ratio”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1990): warning C4101: “n”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1999): warning C4101: “currenti”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2000): warning C4101: “q”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1999): warning C4101: “currentj”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2000): warning C4101: “r”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1994): warning C4101: “mark”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1991): warning C4101: “t”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(1992): warning C4101: “amountdiffer”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2198): warning C4101: “ratio”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2199): warning C4101: “currenti”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2199): warning C4101: “currentj”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2193): warning C4101: “t”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2194): warning C4101: “amountdiffer”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2328): warning C4101: “sum”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2350): warning C4101: “sum”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2543): warning C4101: “num”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2544): warning C4101: “r”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2636): warning C4965: 整数 0 的隐式装箱；请使用 nullptr 或显式转换
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2644): warning C4965: 整数 0 的隐式装箱；请使用 nullptr 或显式转换
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2627): warning C4101: “starti”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2624): warning C4101: “ratio”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2742): warning C4101: “interval”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2627): warning C4101: “endj”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2625): warning C4101: “currenti”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2627): warning C4101: “endi”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2627): warning C4101: “startj”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2625): warning C4101: “currentj”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2631): warning C4101: “r”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2622): warning C4101: “mark”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2619): warning C4101: “t”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(2620): warning C4101: “amountdiffer”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3091): warning C4101: “q”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3294): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3294): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3294): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3349): warning C4101: “spotamount”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3350): warning C4101: “q”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3392): warning C4101: “q”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3488): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3488): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3488): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3539): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3539): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3539): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3697): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3697): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3697): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3760): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3760): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3760): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3824): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3824): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3824): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3944): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3944): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3944): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3967): warning C4101: “numg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3967): warning C4101: “numr”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(3967): warning C4101: “numb”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4034): warning C4101: “amountdiffer”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4063): warning C4101: “sumnum”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4066): warning C4101: “coloramount”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4065): warning C4101: “samecolor”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4062): warning C4101: “amountdifferone”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4062): warning C4101: “amountdiffertwo”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4068): warning C4101: “r”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4065): warning C4101: “differcolor”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4312): warning C4101: “j”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4465): warning C4101: “j”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4822): warning C4101: “amountdiffertwo”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4850): warning C4101: “i”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(4931): warning C4101: “amountdiffer”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5088): warning C4101: “q”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5202): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5203): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5324): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5330): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5344): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5359): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5368): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5383): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5391): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5456): warning C4101: “q”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(5611): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(6945): warning C4101: “i”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(6945): warning C4101: “j”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7041): warning C4101: “addval”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7039): warning C4101: “pointdownleft”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7054): warning C4101: “letterwidth”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7039): warning C4101: “pointdownright”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7042): warning C4101: “leftrightflg”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7039): warning C4101: “pointright”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7039): warning C4101: “pointleft”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7046): warning C4101: “downedgeheight”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7042): warning C4101: “inipointy”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7039): warning C4101: “pointdown”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7050): warning C4101: “samenum”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7042): warning C4101: “inipointx”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7051): warning C4101: “firstspot”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7045): warning C4101: “upedgeheight”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7210): warning C4101: “n”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7210): warning C4101: “num”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7212): warning C4101: “q”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\OcrHelper.h(7210): warning C4101: “m”: 未引用的局部变量
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\ocrhelper.h(2103): warning C4700: 使用了未初始化的局部变量“t”
+     1>d:\documents and settings\administrator\desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ocrhelper\ocrhelper.h(5851): warning C4700: 使用了未初始化的局部变量“j”
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Documents and Settings\Administrator\Desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ConsoleApplication\Debug\OcrHelper.dll" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Documents and Settings\Administrator\Desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ConsoleApplication\Debug\OcrHelper.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /DLL Debug\app.res
+         Debug\AssemblyInfo.obj
+         Debug\OcrHelper.obj
+         Debug\Stdafx.obj
+         "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
+         OcrHelper.vcxproj -> D:\Documents and Settings\Administrator\Desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\ConsoleApplication\Debug\OcrHelper.dll
+     1>已完成生成项目“D:\Documents and Settings\Administrator\Desktop\历史文件\验证码文档\wyh预处理\验证码代码备份\13验证码最新版本\OcrHelper\OcrHelper.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.38

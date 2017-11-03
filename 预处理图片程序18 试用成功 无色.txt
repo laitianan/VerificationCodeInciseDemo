@@ -1,0 +1,349 @@
+#include<stdio.h>
+#include<malloc.h>  
+#include<string.h> 
+#include<math.h>
+#include<stdlib.h>
+#include<iostream>  
+#include <windows.h> 
+using namespace std;
+
+#pragma pack(2)
+
+/*定义WORD为两个字节的类型*/
+typedef unsigned short WORD;
+/*定义DWORD为e四个字节的类型*/
+typedef unsigned long DWORD;
+
+/*位图文件头*/
+typedef struct BMP_FILE_HEADER
+{
+	WORD bType;             /*  文件标识符          */
+	DWORD bSize;            /*  文件的大小          */
+	WORD bReserved1;        /*  保留值,必须设置为0  */
+	WORD bReserved2;        /*  保留值,必须设置为0  */
+	DWORD bOffset;          /*  文件头的最后到图像数据位开始的偏移量    */
+} BMPFILEHEADER;
+
+/*位图信息头*/
+typedef struct BMP_INFO
+{
+	DWORD bInfoSize;       /*  信息头的大小             */
+	DWORD bWidth;          /*  图像的宽度               */
+	DWORD bHeight;         /*  图像的高度               */
+	WORD bPlanes;          /*  图像的位面数             */
+	WORD bBitCount;        /*  每个像素的位数           */
+	DWORD bCompression;    /*  压缩类型                 */
+	DWORD bmpImageSize;    /*  图像的大小,以字节为单位  */
+	DWORD bXPelsPerMeter;  /*  水平分辨率               */
+	DWORD bYPelsPerMeter;  /*  垂直分辨率               */
+	DWORD bClrUsed;        /*  使用的色彩数             */
+	DWORD bClrImportant;   /*  重要的颜色数             */
+} BMPINF;
+
+/*彩色表*/
+typedef struct RGB_QUAD
+{
+	int rgbBlue;         /*  蓝色强度  */
+	int rgbGreen;        /*  绿色强度  */
+	int rgbRed;          /*  红色强度  */
+	int rgbReversed;     /*  保留值    */
+} RGBQUADS, *imagergb;
+imagergb rgb, rgbregister, backgroundrgb;
+void outputrgb(imagergb p, int width)
+{
+	cout << (p - width * 2)->rgbBlue << " " << (p - width * 2)->rgbGreen << " " << (p - width * 2)->rgbRed << "     ";
+	cout << (p - width)->rgbBlue << " " << (p - width)->rgbGreen << " " << (p - width)->rgbRed << "     ";
+	cout << p->rgbBlue << " " << p->rgbGreen << " " << p->rgbRed << "     ";
+	cout << (p + width)->rgbBlue << " " << (p + width)->rgbGreen << " " << (p + width)->rgbRed << "     ";
+	cout << (p + width * 2)->rgbBlue << " " << (p + width * 2)->rgbGreen << " " << (p + width * 2)->rgbRed << endl;
+
+}
+int counttworgb(imagergb p, imagergb q)
+{
+	int rgbspot, rgbrgbBluespot, rgbrgbGreenspot, rgbrgbRedspot;
+	rgbrgbBluespot = p->rgbBlue - ((q)->rgbBlue);
+	rgbrgbGreenspot = p->rgbGreen - ((q)->rgbGreen);
+	rgbrgbRedspot = p->rgbRed - ((q)->rgbRed);
+	if (rgbrgbBluespot < 0)
+		rgbrgbBluespot = -rgbrgbBluespot;
+	if (rgbrgbGreenspot < 0)
+		rgbrgbGreenspot = -rgbrgbGreenspot;
+	if (rgbrgbRedspot < 0)
+		rgbrgbRedspot = -rgbrgbRedspot;
+	rgbspot = rgbrgbBluespot + rgbrgbGreenspot + rgbrgbRedspot;
+	return rgbspot;
+}
+int judgeaddrgbspot(imagergb p, imagergb q, int width, int thresholdvalue,int cimagespot)
+{
+	int i, j, numone, numtwo,numthree,numfour,numfive,numsix,ture,cotinuous=1;
+	int frontture[5] = { 0, 0, 0, 0, 0 }, backture[5] = {0,0,0,0,0};
+	imagergb k,r,s,frontrgb[5],backrgb[5];
+	for (i = 0; i < 5; i++)
+	{
+		ture = 0;
+		for (k = p + (i - 2)*width - 4; k< q + (i - 2)*width +4; k++)
+		{
+			numone = counttworgb(k, k + 1);
+			if (numone>thresholdvalue)
+			{
+				if (ture == 1 && counttworgb(k, k + 1)>thresholdvalue)
+				{
+					numtwo = counttworgb(q, k);
+					if (numtwo <150)
+					{
+						backture[i] = 1;
+						backrgb[i] = k;	
+					}
+					break;
+				}				
+				if (ture == 0)
+				{
+					numtwo = counttworgb(p + 1, k + 1);
+					if (numtwo < 150)
+					{
+						frontture[i] = 1;
+						frontrgb[i] = k;
+                        ture = 1;
+					}					
+				}			
+			}
+		}
+	}
+	for (i = 0; i < 3; i++)
+	{
+		numthree = frontture[i] + frontture[i + 1] + frontture[i + 2];
+		numfour = backture[i] + backture[i + 1] + backture[i + 2];
+		if (numthree == 3 && numfour == 3)
+		{
+			break;
+		}
+	}
+	if (i < 3)
+	{
+		for (j = i; j < i + 2; j++)
+		{
+			numfive = (frontrgb[j] +width)-backrgb[j + 1];
+			numsix = frontrgb[j + 1] -(backrgb[j] + width);
+			if (numfive>=1 || numsix>=1)
+			{
+				cotinuous = 0;
+                break;
+			}			
+		}
+	}			
+	if (i < 3 && cotinuous==1 && p == frontrgb[2])
+	{
+		k = rgbregister + cimagespot;
+		if (cimagespot == 0)
+		{
+			k->rgbBlue = (frontrgb[i] + 1)->rgbBlue;
+			k->rgbGreen = (frontrgb[i] + 1)->rgbGreen;
+			k->rgbRed = (frontrgb[i] + 1)->rgbRed;
+			cout << k->rgbBlue << "   " << k->rgbGreen << "   " << k->rgbRed << endl;
+			k++;
+			cimagespot++;
+		}
+		if (cimagespot != 0)
+		{
+			for (j=i;j < i + 3;j++)
+			{
+				for (r= frontrgb[j]+1; r < backrgb[j] + 1; r++)
+				{
+					for (s=k-1 ;; s--)
+					{
+						if (s == rgbregister && (counttworgb(r, s)) >40)
+						{
+							k->rgbBlue = r->rgbBlue;
+							k->rgbGreen = r->rgbGreen;
+							k->rgbRed = r->rgbRed;
+							cout << k->rgbBlue << "   " << k->rgbGreen << "   " << k->rgbRed << endl;
+							k++;
+							cimagespot++;
+							break;
+						}
+						if ((counttworgb(r, s)) < 40)
+							break;						
+					}
+				}
+			}
+		}
+		        
+	}				
+	return cimagespot;
+}
+int choosergbspot(int beginheight, int width, int cimagespot, int thresholdvalue)
+{
+	int num, countnum, i, cnumberone;
+	imagergb  p, q;
+	cnumberone = 0;
+	for (i = 0, p = rgb + beginheight*width+1, q = rgbregister + cimagespot; i<width - 3; p++, i++)
+	{
+		//outputrgb(p, width);
+		num = counttworgb(p, p + 1);
+		if ((cnumberone >= 2) && (num>thresholdvalue))
+		{	
+			cimagespot = judgeaddrgbspot(p - cnumberone, p, width, thresholdvalue, cimagespot);
+			cnumberone = 0;
+			p = p++;
+			i++;
+			//outputrgb(p, width);
+			p = p++;
+			i++;
+			//outputrgb(p, width);
+		}
+		if (cnumberone != 0)
+		{
+			if (num>150)
+			{
+				cnumberone = 0;
+				p = p++;
+				i++;
+				//outputrgb(p, width);
+			}
+			else
+				cnumberone++;
+		}
+		num = counttworgb(p, p + 1);
+		countnum = counttworgb(p + 1, backgroundrgb);
+		if ((cnumberone == 0) && (num>thresholdvalue) && (countnum>100))
+			cnumberone = 1;
+	}
+	return cimagespot;
+}
+void pretreatmentimage()
+{
+	FILE  *ifp, *ofp;
+	BMPFILEHEADER fileHeader;
+	BMPINF infoHeader;
+	imagergb  p, q;
+	int num, countnum, beginheight, cimagespot = 0, addnumber, add, thresholdvalue;
+	int intervalquantity[4] = {0,0,0,0};
+	long offset, bmpImageSize, width, height, bytesPerPixel, size, bitCount;
+	int i, j, k;
+	fopen_s(&ifp, "7.bmp", "rb");
+	if (ifp == NULL)
+	{
+		printf("图片不存在!\n");
+		return;
+	}
+	fopen_s(&ofp, "处理图.bmp", "wb");
+	fseek(ifp, 0, 0);
+	fread(&fileHeader, sizeof(fileHeader), 1, ifp);
+	fread(&infoHeader, sizeof(infoHeader), 1, ifp);
+	//计算并输出位图数据的偏移量，图像的大小，宽度和高度，每个像素点所占的字节
+	size = fileHeader.bSize;
+	offset = fileHeader.bOffset;
+	bmpImageSize = infoHeader.bmpImageSize;
+	width = infoHeader.bWidth;
+	height = infoHeader.bHeight;
+	bitCount = infoHeader.bBitCount;
+	bytesPerPixel = infoHeader.bBitCount / 8;
+	printf("%d %d %d %d %d %d %d\n", size, offset, bmpImageSize, width, height, bitCount, bytesPerPixel);
+	rgb = (imagergb)malloc((width*height)*sizeof(RGBQUADS));
+	backgroundrgb = (imagergb)malloc((1)*sizeof(RGBQUADS));
+	fseek(ifp, 0, 0);
+	fseek(ofp, 0, 0);
+	for (i = 0; i < offset; i++)
+	{
+		num = fgetc(ifp);
+		fputc(num, ofp);
+	}
+	addnumber = 4 - (width*bytesPerPixel) % 4;
+	if (addnumber == 4)
+		addnumber = 0;
+	for (i = 0, p = rgb; i < width*height; i++, p++)
+	{
+		p->rgbBlue = fgetc(ifp);
+		p->rgbGreen = fgetc(ifp);
+		p->rgbRed = fgetc(ifp);
+		if (bytesPerPixel == 4)
+			p->rgbReversed = fgetc(ifp);
+		if ((addnumber != 0) && (width - i%width == 1))
+		{
+			for (k = 0; k < addnumber; k++)
+			{
+				add = fgetc(ifp);
+			}
+		}
+	}
+	for (i = 0, p = rgb + width; i < width - 3; p++, i++)
+	{
+		countnum = counttworgb(p, p + 1) + counttworgb(p + 1, p + 2) + counttworgb(p + 2, p + 3);
+		if (countnum < 100)
+		{
+			backgroundrgb->rgbBlue = (p + 1)->rgbBlue;
+			backgroundrgb->rgbGreen = (p + 1)->rgbGreen;
+			backgroundrgb->rgbRed = (p + 1)->rgbRed;
+			break;
+		}
+	}
+	for (i = 0, p = rgb + (height / 2)* width+1; i < width -3; p++, i++)
+	{
+		if (counttworgb(p, p + 1)>250)
+			intervalquantity[0]++;
+		if (counttworgb(p, p + 1)>200)
+			intervalquantity[1]++;
+		if (counttworgb(p, p + 1)>150)
+			intervalquantity[2]++;
+		if (counttworgb(p, p + 1)>100)
+			intervalquantity[3]++;
+	}
+
+	for (i = 3;i >=0;i--)
+	{
+		if (intervalquantity[i]>7 && intervalquantity[i]<20)
+		{
+			thresholdvalue = 250 - i * 50;
+		    break;
+		}		
+	}
+	rgbregister = (imagergb)malloc((100)*sizeof(RGBQUADS));
+	for (i =0; i <6; i++)
+	{
+        beginheight = (height / 10) * (i+3);
+		cimagespot = choosergbspot(beginheight, width, cimagespot, thresholdvalue);
+	}
+	for (p = rgb, i = 0; i < width*height; p++, i++)
+	{
+		for (q = rgbregister, j = 0; j < cimagespot; q++, j++)
+		{
+
+			if ((counttworgb(p, q)) <= 50)
+			{
+				fputc(255, ofp);
+				fputc(255, ofp);
+				fputc(255, ofp);
+				if (bytesPerPixel == 4)
+					fputc(p->rgbReversed, ofp);
+				break;
+			}
+		}
+		if ((cimagespot == j) && ((counttworgb(p, q - 1)) > 50))
+		{
+			fputc(0, ofp);
+			fputc(0, ofp);
+			fputc(0, ofp);
+			if (bytesPerPixel == 4)
+				fputc(p->rgbReversed, ofp);
+		}
+		if ((addnumber != 0) && (width - i%width == 1))
+		{
+			for (k = 0; k < addnumber; k++)
+			{
+				fputc(add, ofp);
+			}
+		}
+	}
+	while (!feof(ifp))
+	{
+		fputc(fgetc(ifp), ofp);
+	}
+	fclose(ifp);
+	fclose(ofp);
+}
+int main()
+{
+	pretreatmentimage();
+	return 0;
+}
+
